@@ -1,10 +1,8 @@
 # Initial Imports for the pyGame Module
 
-import pygame
-
-import random
 
 from pygame import *
+from Sprites import *
 
 # Setup for the Height and Width of the window for the executable display
 
@@ -20,16 +18,23 @@ window = pygame.display.set_mode((window_width, window_height))
 pygame.display.set_caption('Plat-Man')
 timer = pygame.time.Clock()
 
+# Creating a variable to contain all Sprite Objects from separate sprite modules, creating the imported player from mod.
+sprite_objects = pygame.sprite.Group()
+player = Player()
+sprite_objects.add()
+
 # Main loop for game drawing function, event handling, listening,
 # set active to false to end game after ending condition met.
-
 active = True
 while active:
     # Make the game run at the specified speed of the game - Avoid Lag from different elements.
     timer.tick(game_speed)
     # To Do: Create Graphics to draw in background of window file.
-    # light blue screen of death used for screen placeholder until replacement found.
+    # Update loop to redraw all sprites from previous grouping.
+    sprite_objects.update()
+    # Fill the screen with a Placeholder Color, and redraw the sprites to the game board.
     window.fill((0, 255, 255))
+    sprite_objects.draw(window)
     # Create flip display to re-draw elements
     pygame.display.flip()
     # Input or Key Pressing Event Statements to Exit, Move, Etc.
