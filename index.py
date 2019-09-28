@@ -1,10 +1,8 @@
 # Initial Imports for the pyGame Module
-
-
-from pygame import *
-from Sprites import *
+import pygame
 
 # Setup for the Height and Width of the window for the executable display
+
 
 window_width = 500
 window_height = 500
@@ -17,11 +15,24 @@ pygame.mixer.init()
 window = pygame.display.set_mode((window_width, window_height))
 pygame.display.set_caption('Plat-Man')
 timer = pygame.time.Clock()
+GREEN_BOX = (0, 255, 0)
+
+
+# Original player class definition being initialized
+class Player(pygame.sprite.Sprite):
+    # Defining self attributes for coordinates, physics, etc.
+    def __init__(self):
+        pygame.sprite.Sprite.__init__(self)  # Calling it's super class for proper function.
+        self.image = pygame.Surface((25, 25))  # The picture of the sprite itself. Placeholder to be a green box.
+        self.rect = self.image.get_rect()  # The boundry box "hitbox" of the player created. Start at center of screen
+        self.rect.center = (window_width / 2, window_height / 2)
+        self.image.fill(GREEN_BOX)
+
 
 # Creating a variable to contain all Sprite Objects from separate sprite modules, creating the imported player from mod.
 sprite_objects = pygame.sprite.Group()
 player = Player()
-sprite_objects.add()
+sprite_objects.add(player)
 
 # Main loop for game drawing function, event handling, listening,
 # set active to false to end game after ending condition met.
