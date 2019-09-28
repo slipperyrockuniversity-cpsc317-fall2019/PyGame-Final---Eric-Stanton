@@ -6,7 +6,7 @@ import pygame
 
 window_width = 500
 window_height = 500
-game_speed = 30
+game_speed = 60  # ticks per second = frames per second
 
 # pyGame Initialization (Music, Screen, Title, Timer Function)
 
@@ -27,6 +27,11 @@ class Player(pygame.sprite.Sprite):
         self.rect = self.image.get_rect()  # The boundry box "hitbox" of the player created. Start at center of screen
         self.rect.center = (window_width / 2, window_height / 2)
         self.image.fill(GREEN_BOX)
+
+    def update(self):  # pygame movement for x and y co-ord, test will change for key presses in the future.
+        self.rect.x = self.rect.x + 5
+        if self.rect.left > window_width:
+            self.rect.right = 0
 
 
 # Creating a variable to contain all Sprite Objects from separate sprite modules, creating the imported player from mod.
