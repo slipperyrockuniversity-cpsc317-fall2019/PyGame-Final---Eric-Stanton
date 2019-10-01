@@ -2,11 +2,7 @@
 import pygame
 import os
 from Sprite import Sprites
-
-# Setup for the Height and Width of the window for the executable display
-window_width = 500
-window_height = 500
-game_speed = 60  # ticks per second = frames per second
+from Options.Settings import *
 
 # Creating folder to hold the assets for the game.
 asset_folder = os.path.dirname(__file__)  # Universal function for multiple OS system
