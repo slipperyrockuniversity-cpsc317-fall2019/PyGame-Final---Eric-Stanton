@@ -2,3 +2,4 @@
 window_width = 500
 window_height = 500
 game_speed = 60  # ticks per second = frames per second
+game_title = "Plat-Man"  # Name of the game.

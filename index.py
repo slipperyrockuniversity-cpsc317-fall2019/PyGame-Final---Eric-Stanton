@@ -13,7 +13,7 @@ image_folder = os.path.join(asset_folder, 'img')  # Joining the future img folde
 pygame.init()
 pygame.mixer.init()
 window = pygame.display.set_mode((window_width, window_height))
-pygame.display.set_caption('Plat-Man')
+pygame.display.set_caption(game_title)
 timer = pygame.time.Clock()
 
 # Creating a variable to contain all Sprite Objects from separate sprite modules, creating the imported player from mod.
@@ -31,7 +31,7 @@ while active:
     # Update loop to redraw all sprites from previous grouping.
     sprite_objects.update()
     # Fill the screen with a Placeholder Color, and redraw the sprites to the game board.
-    window.fill((0, 255, 255))
+    window.fill((0, 0, 0))
     sprite_objects.draw(window)
     # Create flip display to re-draw elements
     pygame.display.flip()
