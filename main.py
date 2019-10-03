@@ -44,7 +44,7 @@ class Game:
 
     def draw(self):
         # Game loop which draws the main graphics
-        self.window.fill((0, 255, 0))
+        self.window.fill((0, 0, 0))
         sprite_objects.draw(self.window)
         # Create flip display to re-draw elements
         game.display.flip()
