@@ -61,7 +61,7 @@ class Game:
 win = Game()
 win.make_ending_screen()
 while win.alive:
-    win.active()
+    win.begin()
     win.startup_screen()
 
 game.quit()
