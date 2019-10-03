@@ -44,4 +44,4 @@ class Player(game.sprite.Sprite):
         if self.position.x > window_width:
             self.position.x = 0
         if self.position.x < 0:
-           self.position.x = window_width
+            self.position.x = window_width
