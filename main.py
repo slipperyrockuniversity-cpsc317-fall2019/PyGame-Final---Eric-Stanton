@@ -16,15 +16,16 @@ class Game:
         self.window = game.display.set_mode((window_width, window_height))
         game.display.set_caption(game_title)
         self.timer = game.time.Clock()
+        self.player = Player(self)
 
     def begin(self):
-        # game creation function.
+        # Game creation function, platform creation function.
         self.platforms = game.sprite.Group()
-        player = Player()
-        sprite_objects.add(player)
-        platform_1 = Platform(0, window_height - 40, window_width, 40)
-        sprite_objects.add(platform_1)
-        self.platforms.add(platform_1)
+        sprite_objects.add(self.player)
+        for select in platform_array:
+            plat = Platform(*select)  # Use explosion of array to select random platform generators.
+            sprite_objects.add(plat)
+            self.platforms.add(plat)  # Add the resulting platform array to the game
         self.active()
 
     def active(self):
@@ -39,6 +40,12 @@ class Game:
     def update(self):
         # Update draw of the game
         sprite_objects.update()
+        # Collision check for platforms - Enable jumping through platforms.
+        if self.player.velocity.y > 0:
+            touching = game.sprite.spritecollide(self.player, self.platforms, False)
+            if touching:
+                self.player.position.y = touching[0].rect.top  # If player touches platform, force position on top.
+                self.player.velocity.y = 0  # Stop falling, lack of this line causes quicksand effect.
 
     def event_handles(self):
         for key in game.event.get():
@@ -46,6 +53,9 @@ class Game:
                 if self.on:
                     self.on = False
             self.alive = False
+            if key.type == game.KEYDOWN:
+                if key.key == game.K_SPACE:
+                    self.player.Jump()
 
     def draw(self):
         # Game loop which draws the main graphics

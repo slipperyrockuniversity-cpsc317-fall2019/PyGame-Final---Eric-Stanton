@@ -15,7 +15,7 @@ sprite_objects = game.sprite.Group()
 # Original player class definition being initialized
 class Player(game.sprite.Sprite):
     # Defining self attributes for coordinates, physics, etc.
-    def __init__(self):
+    def __init__(self, instance):
         game.sprite.Sprite.__init__(self)  # Calling it's super class for proper function.
         self.image = game.image.load(os.path.join(image_folder, "Platformer_Sprite_1.png"))  # The picture of the
         # sprite itself. Os.Path to platform image.
@@ -24,6 +24,7 @@ class Player(game.sprite.Sprite):
         self.position = vector(window_width / 2, window_height / 2)
         self.velocity = vector(0, 0)
         self.acceleration = vector(0, 0)
+        self.instance = instance  # Self-Reference to the game option and variables.
 
     def update(self):  # pygame movement for x and y co-ord. Now added key presses
         self.acceleration = vector(0, 0.5)  # Y acceleration to simulate gravity value for jumping.
@@ -38,10 +39,18 @@ class Player(game.sprite.Sprite):
         self.velocity += self.acceleration
         self.position += self.velocity + 0.5 * self.acceleration  # Motion equation to build up momentum when moving.
 
-        self.rect.center = self.position  # Puts center of Player class as same area as movement position.
+        self.rect.midbottom = self.position  # Puts center of Player class as same area as movement position.
 
         # If check to allow for proper wrapping around the screen if the x position is off the screen bounds.
         if self.position.x > window_width:
             self.position.x = 0
         if self.position.x < 0:
             self.position.x = window_width
+
+    def Jump(self):
+        # Check to perform a single jump, reliant on platforms
+        self.rect.x += 1
+        touching = game.sprite.spritecollide(self, self.instance.platforms, False)
+        self.rect.x -= 1
+        if touching:
+            self.velocity.y = -15
