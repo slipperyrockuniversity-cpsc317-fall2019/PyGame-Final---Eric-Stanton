@@ -2,6 +2,7 @@ import pygame as game
 import os
 from Sprite.Sprites import Player, sprite_objects
 from Options.Settings import *
+from Sprite.Platform import *
 
 
 # Creating class of game to properly initialize
@@ -18,8 +19,12 @@ class Game:
 
     def begin(self):
         # game creation function.
+        self.platforms = game.sprite.Group()
         player = Player()
         sprite_objects.add(player)
+        platform_1 = Platform(0, window_height - 40, window_width, 40)
+        sprite_objects.add(platform_1)
+        self.platforms.add(platform_1)
         self.active()
 
     def active(self):

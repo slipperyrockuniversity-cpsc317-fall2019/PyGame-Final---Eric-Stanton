@@ -26,7 +26,7 @@ class Player(game.sprite.Sprite):
         self.acceleration = vector(0, 0)
 
     def update(self):  # pygame movement for x and y co-ord. Now added key presses
-        self.acceleration = vector(0, 0)  # Replacement for stationary values of vx and vy.
+        self.acceleration = vector(0, 0.5)  # Y acceleration to simulate gravity value for jumping.
         key_board = game.key.get_pressed()
         if key_board[game.K_LEFT]:
             self.acceleration.x = -starting_acceleration
@@ -34,7 +34,7 @@ class Player(game.sprite.Sprite):
             self.acceleration.x = starting_acceleration
 
         # Gaming Laws of motion for Velocity, Friction and sliding for smoother movement.
-        self.acceleration += self.velocity * friction_level  # Creates "skidding" effect for realistic movement.
+        self.acceleration.x += self.velocity.x * friction_level  # Creates "skidding" effect for realistic movement.
         self.velocity += self.acceleration
         self.position += self.velocity + 0.5 * self.acceleration  # Motion equation to build up momentum when moving.
 
