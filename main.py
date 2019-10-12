@@ -1,4 +1,5 @@
 import pygame as game
+import random
 import os
 from Sprite.Sprites import Player, sprite_objects
 from Options.Settings import *
@@ -46,6 +47,21 @@ class Game:
             if touching:
                 self.player.position.y = touching[0].rect.top  # If player touches platform, force position on top.
                 self.player.velocity.y = 0  # Stop falling, lack of this line causes quicksand effect.
+        # Check for the scrolling window for upward movement.
+        if self.player.rect.top <= window_height / 4:
+            self.player.position.y += abs(self.player.velocity.y)  # Force the y position upwards by the Vel. setting
+            for select in self.platforms:
+                select.rect.y += abs(self.player.velocity.y)  # Drag the platforms along with the Player.
+                if select.rect.top >= window_height:
+                    select.kill()  # If the platforms goes below the window height, kill the object.
+
+        # Spawn brand new platforms from random number values. Keep an average number of them.
+        while len(self.platforms) < 7:
+            spawn = Platform(random.randrange(0, window_width - random_width),
+                             random.randrange(-50, -35),random_width, 25)  # Random x and y values called
+            # width and height sanity checks
+            self.platforms.add(spawn)
+            sprite_objects.add(spawn)
 
     def event_handles(self):
         for key in game.event.get():
