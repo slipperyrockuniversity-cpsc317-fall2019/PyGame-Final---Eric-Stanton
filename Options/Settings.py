@@ -5,14 +5,15 @@ window_width = 400
 window_height = 650
 game_speed = 75  # ticks per second = frames per second
 game_title = "Plat-Man"  # Name of the game.
+game_font = 'Serif'
 
 '''
 Previous Settings - Window
 Next Settings - Properties called by the player (Friction Coefficient, Starting Acceleration etc.)
 '''
 
-starting_acceleration = 0.5
-friction_level = -0.20
+starting_acceleration = 0.45
+friction_level = -0.10
 
 # Platform array list for easy spawning of platforms in the future.
 # Uses random int for a few platforms from previous main.py file
