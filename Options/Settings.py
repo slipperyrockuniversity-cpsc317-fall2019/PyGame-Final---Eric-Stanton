@@ -27,3 +27,15 @@ platform_array = [(0, window_height - 40, window_width, 40), (window_width / 2 -
                    random.randrange(-50, -25), random_width, 25), (random.randrange(0, window_width - random_width),
                                                                    random.randrange(-50, -25), random_width, 25),
                   (200, 200, random_width, random_height)]
+
+'''
+Color Variables for random text or BG drawing.
+'''
+
+White = (155, 155, 155)
+
+Black = (0, 0, 0)
+
+Red = (203, 0, 0)
+
+Orange = (255, 116, 21)

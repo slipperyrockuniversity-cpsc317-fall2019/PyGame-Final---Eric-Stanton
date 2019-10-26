@@ -60,13 +60,13 @@ class Game:
 
         # Player Kill Function Check for rect.bottom of player
         if self.player.rect.bottom > window_height:
+            self.make_ending_screen()
             self.on = False
-
 
         # Spawn brand new platforms from random number values. Keep an average number of them.
         while len(self.platforms) < 5:
             spawn = Platform(random.randrange(0, window_width - random_width),
-                             random.randrange(-50, -35),random_width, 25)  # Random x and y values called
+                             random.randrange(-50, -35), random_width, 25)  # Random x and y values called
             # width and height sanity checks
             self.platforms.add(spawn)
             sprite_objects.add(spawn)
@@ -83,33 +83,54 @@ class Game:
 
     def draw(self):
         # Game loop which draws the main graphics
-        self.window.fill((0, 0, 0))
+        self.window.fill(White)
         sprite_objects.draw(self.window)
         # Create flip display to re-draw elements, including score
-        self.score_draw(str(self.score_num), 15, white_box, window_width/2, 10)
+        self.score_draw(str(self.score_num), 15, white_box, window_width / 2, 10)
         game.display.flip()
 
     def make_ending_screen(self):
         # You died screen.
-        pass
+        self.window.fill(White)
+        self.score_draw("You Died Bruh..", 50, Red, window_width / 2, window_height / 4)
+        self.score_draw("Final Distance: " + str(self.score_num), 25, Orange, window_width / 2, window_height / 2)
+        game.display.flip()
+        self.key_STOP()
 
     def score_draw(self, text, size, color, x, y):
         # height score to post to screen
         font = game.font.Font(self.font, size)
         text_area = font.render(text, True, color)
         text_surface = text_area.get_rect()
-        text_surface.midtop = (x , y)
+        text_surface.midtop = (x, y)
         self.window.blit(text_area, text_surface)
 
     def startup_screen(self):
         # Screen when first turned on.
-        pass
+        self.window.fill(White)
+        self.score_draw("PLAT-MAN", 50, Red, window_width * .5, window_height * .20)
+        self.score_draw("Press Space-Bar for Hops, "
+                        "Arrows to move, fall to...die i guess.",
+                        15, Black, window_width / 1.9, window_height / 2)
+        self.score_draw("Press any Key to begin Play.....", 30, Orange, window_height * .30, window_width * 1.2)
+        game.display.flip()
+        self.key_STOP()
+
+    def key_STOP(self):
+        paused = True
+        while paused:
+            self.timer.tick(game_speed)
+            for routine in game.event.get():
+                if routine.type == game.QUIT:
+                    paused = False
+                    self.on = False
+                if routine.type == game.KEYUP:
+                    paused = False
 
 
 win = Game()
-win.make_ending_screen()
 while win.alive:
-    win.begin()
     win.startup_screen()
+    win.begin()
 
 game.quit()
