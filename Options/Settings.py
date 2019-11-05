@@ -19,9 +19,9 @@ friction_level = -0.10
 # Uses random int for a few platforms from previous main.py file
 
 random_width = random.randrange(75, 100)  # Range of width values to use for platform generation
-random_height = random.randrange(-5, 20)  # Range of random heights for beginner platform generation.
+random_height = random.randrange(0, 20)  # Range of random heights for beginner platform generation.
 
-platform_array = [(0, window_height - 35, window_width, 35), (window_width / 2 - 50, window_height * 0.75, 85, 20),
+platform_array = [(0, window_height - 35, window_width + 50, 35), (window_width / 2 - 50, window_height * 0.75, 85, 20),
                   (window_width / 2 - 25, window_height * 0.50, 100, 100),
                   (random.randrange(0, window_width - random_width),
                    random.randrange(-50, -25), random_width, 25), (random.randrange(0, window_width - random_width),
