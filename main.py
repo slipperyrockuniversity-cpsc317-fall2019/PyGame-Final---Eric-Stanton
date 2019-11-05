@@ -108,7 +108,7 @@ class Game:
     def startup_screen(self):
         # Screen when first turned on.
         self.window.fill(White)
-        self.score_draw("PLAT-MAN", 50, Red, window_width * .5, window_height * .20)
+        self.score_draw("Jelly-Bouncer", 50, Red, window_width * .5, window_height * .20)
         self.score_draw("Press Space-Bar for Hops, "
                         "Arrows to move, fall to...die i guess.",
                         15, Black, window_width / 1.9, window_height / 2)
