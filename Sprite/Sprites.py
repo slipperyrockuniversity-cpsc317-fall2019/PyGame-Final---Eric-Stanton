@@ -53,4 +53,4 @@ class Player(game.sprite.Sprite):
         touching = game.sprite.spritecollide(self, self.instance.platforms, False)
         self.rect.x -= 1
         if touching:
-            self.velocity.y = -15
+            self.velocity.y = -14
