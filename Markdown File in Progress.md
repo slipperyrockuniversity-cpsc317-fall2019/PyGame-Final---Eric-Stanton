@@ -19,3 +19,17 @@ I am attempting to make a game that satisfies the conditions of having:
 4. Score iteration or timer.
 5. End goal integral to the next condition.
 6. A theme consistent through the assets.
+
+
+#Update 11/6/2019:
+
+Workable Game Prototype has been integrated to main Branch. New sprites have been added, and a candy theme has been chosen for the game. 
+------------
+Physics have been added and with proper platform generation, one issue (platform conjoinment).
+------------
+Assets Remaining: Music, Background, (Jump, Start, Die) Sound Effects, refinement of game code.
+------------
+Potential plans: Sideways "dart" enemies with a hit counter, die of certain number counter increments.
+-------------
+Most recent Master Merge - 11/6/2019.
+--------------
