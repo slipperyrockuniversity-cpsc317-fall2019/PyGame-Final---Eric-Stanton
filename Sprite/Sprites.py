@@ -3,10 +3,14 @@ import pygame as game
 import os
 from Options.Settings import *
 
+
 vector = game.math.Vector2  # Main vector for friction and movement physics.
+game.mixer.init()
 
 asset_folder = os.path.dirname(__file__)  # Cross Referenced for image from index.
 image_folder = os.path.join(asset_folder, 'img')  # Cross Referenced as well from index.
+sound_folder = os.path.join(asset_folder, 'sound')
+hop = game.mixer.Sound(os.path.join(sound_folder, 'Jump.ogg'))
 
 # creating locations for sprite objects inside the grouping.
 sprite_objects = game.sprite.Group()
@@ -54,3 +58,4 @@ class Player(game.sprite.Sprite):
         self.rect.x -= 1
         if touching:
             self.velocity.y = -14
+            hop.play()

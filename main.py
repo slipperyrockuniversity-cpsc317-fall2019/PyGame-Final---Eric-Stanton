@@ -5,6 +5,11 @@ from Sprite.Sprites import Player, sprite_objects
 from Options.Settings import *
 from Sprite.Platform import *
 
+asset_folder = os.path.dirname(__file__)  # Cross Referenced for image from index.
+image_folder = os.path.join(asset_folder, 'img')  # Cross Referenced as well from index.
+dead = game.mixer.Sound('Sprite/sound/Randomize10.ogg')
+hop = game.mixer.Sound('Sprite/sound/Jump.ogg')
+
 
 # Creating class of game to properly initialize
 class Game:
@@ -91,6 +96,7 @@ class Game:
 
     def make_ending_screen(self):
         # You died screen.
+        dead.play()
         self.window.fill(White)
         self.score_draw("You Died Bruh..", 50, Red, window_width / 2, window_height / 4)
         self.score_draw("Final Distance: " + str(self.score_num), 25, Orange, window_width / 2, window_height / 2)
