@@ -9,14 +9,14 @@ asset_folder = os.path.dirname(__file__)  # Cross Referenced for image from inde
 image_folder = os.path.join(asset_folder, 'img')  # Cross Referenced as well from index.
 dead = game.mixer.Sound('Sprite/sound/Randomize10.ogg')
 hop = game.mixer.Sound('Sprite/sound/Jump.ogg')
-background = game.image.load('')
+background = game.image.load('img/2471981 (2).jpg')
 
 
 # Creating class of game to properly initialize
 class Game:
     def __init__(self):
-        # Game Start screen
-        # pyGame Initialization (Music, Screen, Title, Timer Function)
+        self.background_y = 0
+        self.background_y2 = background.get_height()
         self.alive = True
         game.init()
         game.mixer.init()
@@ -91,7 +91,7 @@ class Game:
 
     def draw(self):
         # Game loop which draws the main graphics
-        self.window.fill(White)
+        self.window.blit(background, (0, self.background_y))
         sprite_objects.draw(self.window)
         # Create flip display to re-draw elements, including score
         self.score_draw(str(self.score_num), 15, white_box, window_width / 2, 10)
