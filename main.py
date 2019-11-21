@@ -9,6 +9,7 @@ asset_folder = os.path.dirname(__file__)  # Cross Referenced for image from inde
 image_folder = os.path.join(asset_folder, 'img')  # Cross Referenced as well from index.
 dead = game.mixer.Sound('Sprite/sound/Randomize10.ogg')
 hop = game.mixer.Sound('Sprite/sound/Jump.ogg')
+background = game.image.load('')
 
 
 # Creating class of game to properly initialize
@@ -34,10 +35,12 @@ class Game:
             plat = Platform(*select)  # Use explosion of array to select random platform generators.
             sprite_objects.add(plat)
             self.platforms.add(plat)  # Add the resulting platform array to the game
+        game.mixer.music.load('Sprite/sound/Mushroom Theme.ogg')
         self.active()
 
     def active(self):
         # Loop of the game itself, uses other defined functions.
+        game.mixer.music.play(loops=-1)  # Infinite music looping of the loaded track from previous mixer call.
         self.on = True
         while self.on:
             self.timer.tick(game_speed)
@@ -97,6 +100,7 @@ class Game:
     def make_ending_screen(self):
         # You died screen.
         dead.play()
+        game.mixer.music.fadeout(550)  # Causes the music to slowly fadeout after death
         self.window.fill(White)
         self.score_draw("You Died Bruh..", 50, Red, window_width / 2, window_height / 4)
         self.score_draw("Final Distance: " + str(self.score_num), 25, Orange, window_width / 2, window_height / 2)
