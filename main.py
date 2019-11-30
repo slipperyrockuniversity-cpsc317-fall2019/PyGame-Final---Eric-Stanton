@@ -1,15 +1,13 @@
 import pygame as game
-import random
-import os
-from Sprite.Sprites import Player, sprite_objects
-from Options.Settings import *
+
 from Sprite.Platform import *
+from Sprite.Sprites import Player, sprite_objects
 
 asset_folder = os.path.dirname(__file__)  # Cross Referenced for image from index.
 image_folder = os.path.join(asset_folder, 'img')  # Cross Referenced as well from index.
-dead = game.mixer.Sound('Sprite/sound/Randomize10.ogg')
-hop = game.mixer.Sound('Sprite/sound/Jump.ogg')
-background = game.image.load('img/2471981 (2).jpg')
+dead = game.mixer.Sound('Sprite/sound/126420__cabeeno-rossley__game-noises-1.wav')
+hop = game.mixer.Sound('Sprite/sound/126416__cabeeno-rossley__jump.wav')
+background = game.image.load('img/3032638.jpg')
 
 
 # Creating class of game to properly initialize
@@ -35,10 +33,10 @@ class Game:
             plat = Platform(*select)  # Use explosion of array to select random platform generators.
             sprite_objects.add(plat)
             self.platforms.add(plat)  # Add the resulting platform array to the game
-        for i in range(6):
+        for i in range(5):
             c = Candy(self)
-            c.rect.y += 500
-        game.mixer.music.load('Sprite/sound/Mushroom Theme.ogg')
+            c.rect.y += 550
+        game.mixer.music.load('Sprite/sound/Pim Poy Pocket.wav')
         self.active()
 
     def active(self):
