@@ -12,7 +12,7 @@ sound_folder = os.path.join(asset_folder, 'sound')
 hop = game.mixer.Sound(os.path.join(sound_folder, 'Jump.ogg'))
 
 # creating locations for sprite objects inside the grouping.
-sprite_objects = game.sprite.Group()
+sprite_objects = game.sprite.LayeredUpdates()
 
 
 # Original player class definition being initialized

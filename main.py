@@ -16,7 +16,6 @@ background = game.image.load('img/2471981 (2).jpg')
 class Game:
     def __init__(self):
         self.background_y = 0
-        self.background_y2 = background.get_height()
         self.alive = True
         game.init()
         game.mixer.init()
@@ -30,11 +29,15 @@ class Game:
         # Game creation function, platform creation function, added score.
         self.score_num = 0
         self.platforms = game.sprite.Group()
+        self.candy = game.sprite.Group()
         sprite_objects.add(self.player)
         for select in platform_array:
             plat = Platform(*select)  # Use explosion of array to select random platform generators.
             sprite_objects.add(plat)
             self.platforms.add(plat)  # Add the resulting platform array to the game
+        for i in range(12):
+            c = Candy(self)
+            c.rect.y += 500
         game.mixer.music.load('Sprite/sound/Mushroom Theme.ogg')
         self.active()
 
@@ -59,13 +62,16 @@ class Game:
                 self.player.velocity.y = 0  # Stop falling, lack of this line causes quicksand effect.
         # Check for the scrolling window for upward movement.
         if self.player.rect.top <= window_height / 4:
+            if random.randrange(25) < 5:
+                Candy(self)
+            for candy in self.candy:
+                candy.rect.y += max(abs(self.player.velocity.y / 2), 2)
             self.player.position.y += abs(self.player.velocity.y)  # Force the y position upwards by the Vel. setting
             for select in self.platforms:
                 select.rect.y += abs(self.player.velocity.y)  # Drag the platforms along with the Player.
                 if select.rect.top >= window_height:
                     select.kill()  # If the platforms goes below the window height, kill the object, add 5 points.
                     self.score_num += 5
-
         # Player Kill Function Check for rect.bottom of player
         if self.player.rect.bottom > window_height:
             self.make_ending_screen()
