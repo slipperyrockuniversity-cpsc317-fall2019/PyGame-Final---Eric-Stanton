@@ -35,7 +35,7 @@ class Game:
             plat = Platform(*select)  # Use explosion of array to select random platform generators.
             sprite_objects.add(plat)
             self.platforms.add(plat)  # Add the resulting platform array to the game
-        for i in range(6):
+        for i in range(12):
             c = Candy(self)
             c.rect.y += 500
         game.mixer.music.load('Sprite/sound/Mushroom Theme.ogg')
@@ -62,7 +62,7 @@ class Game:
                 self.player.velocity.y = 0  # Stop falling, lack of this line causes quicksand effect.
         # Check for the scrolling window for upward movement.
         if self.player.rect.top <= window_height / 4:
-            if random.randrange(95) < 5:
+            if random.randrange(25) < 5:
                 Candy(self)
             for candy in self.candy:
                 candy.rect.y += max(abs(self.player.velocity.y / 2), 2)

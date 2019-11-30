@@ -14,7 +14,6 @@ image_folder = os.path.join(asset_folder, 'img')  # Cross Referenced as well fro
 candy_images = ['img/star_orange.png', 'img/star_purple.png', 'img/star_red.png', 'img/star_teal.png', 'img'
                                                                                                        '/star_white.png',
                 'img/star_yellow.png', ]
-sprite_objects = pygame.sprite.LayeredUpdates()
 
 
 class Platform(pygame.sprite.Sprite):
@@ -29,9 +28,8 @@ class Platform(pygame.sprite.Sprite):
 
 class Candy(pygame.sprite.Sprite):
     def __init__(self, game):
+        pygame.sprite.Sprite.__init__(self)
         self._layer = 0
-        self.groups = sprite_objects, game.candy
-        pygame.sprite.Sprite.__init__(self, self.groups)
         self.image = pygame.image.load(candy_images[randint(0, 5)])
         self.rect = self.image.get_rect()
         self.rect.x = randrange(window_width - self.rect.width)
