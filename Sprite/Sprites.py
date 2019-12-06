@@ -24,7 +24,8 @@ class Player(game.sprite.Sprite):
                    'Sprite/img/jelly_green.png', 'Sprite/img/jelly_purple.png', 'img/waffleChoco.png',
                    'img/wafflePink.png', 'img/waffleWhite.png']
         game.sprite.Sprite.__init__(self)  # Calling it's super class for proper function.
-        self.image = game.image.load(sprites[random.randint(0,11)])  # The picture of the
+        self._layer = 0
+        self.image = game.image.load(sprites[random.randint(0, 10)])  # The picture of the
         self.rect = self.image.get_rect()  # The boundary box "hitbox" of the player created. Start at center of screen
         self.rect.center = (window_width / 2, window_height / 2)
         self.position = vector(window_width / 2, window_height / 2)

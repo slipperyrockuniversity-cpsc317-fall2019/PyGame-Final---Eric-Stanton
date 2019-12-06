@@ -1,18 +1,21 @@
 import pygame as game
 
 from Sprite.Platform import *
-from Sprite.Sprites import Player, sprite_objects
+from Sprite.Sprites import Player
 
 asset_folder = os.path.dirname(__file__)  # Cross Referenced for image from index.
 image_folder = os.path.join(asset_folder, 'img')  # Cross Referenced as well from index.
 dead = game.mixer.Sound('Sprite/sound/126420__cabeeno-rossley__game-noises-1.wav')
 hop = game.mixer.Sound('Sprite/sound/126416__cabeeno-rossley__jump.wav')
 background = game.image.load('img/3032638.jpg')
-
+sprite_objects = game.sprite.LayeredUpdates()
+image = game.image.load('img/gifts.jpg')
 
 # Creating class of game to properly initialize
 class Game:
     def __init__(self):
+        self.platforms = game.sprite.Group()
+        self.candy = game.sprite.Group()
         self.background_y = 0
         self.alive = True
         game.init()
@@ -26,20 +29,16 @@ class Game:
     def begin(self):
         # Game creation function, platform creation function, added score.
         self.score_num = 0
-        self.platforms = game.sprite.Group()
-        self.candy = game.sprite.Group()
         sprite_objects.add(self.player)
         for select in platform_array:
             plat = Platform(*select)  # Use explosion of array to select random platform generators.
             sprite_objects.add(plat)
             self.platforms.add(plat)  # Add the resulting platform array to the game
-<<<<<<< HEAD
-        for i in range(12):
-=======
-        for i in range(5):
->>>>>>> Development-Eric
+
+        for i in range(6):
             c = Candy(self)
             c.rect.y += 550
+            sprite_objects.add(c)
         game.mixer.music.load('Sprite/sound/Pim Poy Pocket.wav')
         self.active()
 
@@ -64,11 +63,11 @@ class Game:
                 self.player.velocity.y = 0  # Stop falling, lack of this line causes quicksand effect.
         # Check for the scrolling window for upward movement.
         if self.player.rect.top <= window_height / 4:
-            if random.randrange(25) < 5:
-                Candy(self)
+            if random.randrange(90) < 5:  # If a random number goes off, add candy rain in the background.
+                sprite_objects.add(Candy(self))
+            self.player.position.y += abs(self.player.velocity.y)  # Force the y position upwards by velocity setting.
             for candy in self.candy:
-                candy.rect.y += max(abs(self.player.velocity.y / 2), 2)
-            self.player.position.y += abs(self.player.velocity.y)  # Force the y position upwards by the Vel. setting
+                candy.rect.y += max(abs(self.player.velocity.y / 2), 2.5)
             for select in self.platforms:
                 select.rect.y += abs(self.player.velocity.y)  # Drag the platforms along with the Player.
                 if select.rect.top >= window_height:
@@ -125,11 +124,14 @@ class Game:
 
     def startup_screen(self):
         # Screen when first turned on.
-        self.window.fill(White)
-        self.score_draw("Jelly-Bouncer", 50, Red, window_width * .5, window_height * .20)
+        game.mixer.music.load('Sprite/sound/371221__zoefitzgerald__christmas-bells.wav')
+        game.mixer.music.play(loops=1)
+        self.window.fill(white_box)
+        self.window.blit(image, (0,0))
+        self.score_draw("Candy Climb", 50, Red, window_width * .5, window_height * .11)
         self.score_draw("Press Space-Bar for Hops, "
                         "Arrows to move, fall to...die i guess.",
-                        15, Black, window_width / 1.9, window_height / 2)
+                        15, Black, window_width / 1.9, window_height / 2.2)
         self.score_draw("Press any Key to begin Play.....", 30, Orange, window_height * .30, window_width * 1.2)
         game.display.flip()
         self.key_STOP()

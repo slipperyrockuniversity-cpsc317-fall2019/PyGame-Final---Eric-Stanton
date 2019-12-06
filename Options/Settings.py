@@ -3,8 +3,8 @@ import random
 
 window_width = 400
 window_height = 650
-game_speed = 75  # ticks per second = frames per second
-game_title = "Plat-Man"  # Name of the game.
+game_speed = 60  # ticks per second = frames per second
+game_title = "Candy Climb"  # Name of the game.
 game_font = 'Serif'
 
 '''
