@@ -4,22 +4,29 @@ import os
 from Options.Settings import *
 
 vector = game.math.Vector2  # Main vector for friction and movement physics.
+game.mixer.init()
 
 asset_folder = os.path.dirname(__file__)  # Cross Referenced for image from index.
 image_folder = os.path.join(asset_folder, 'img')  # Cross Referenced as well from index.
+sound_folder = os.path.join(asset_folder, 'sound')
+hop = game.mixer.Sound(os.path.join(sound_folder, '126416__cabeeno-rossley__jump.wav'))
 
-# creating locations for sprite objects inside the grouping.
-sprite_objects = game.sprite.Group()
+# creating locations for sprite objects inside the group for layering.
+sprite_objects = game.sprite.LayeredUpdates()
 
 
 # Original player class definition being initialized
 class Player(game.sprite.Sprite):
     # Defining self attributes for coordinates, physics, etc.
     def __init__(self, instance):
+        sprites = ['Sprite/img/jelly_blue.png', 'Sprite/img/jelly_teal.png', 'Sprite/img/jelly_red.png',
+                   'Sprite/img/jelly_orange.png', 'Sprite/img/jelly_yellow.png', 'Sprite/img/jelly_pink.png',
+                   'Sprite/img/jelly_green.png', 'Sprite/img/jelly_purple.png', 'img/waffleChoco.png',
+                   'img/wafflePink.png', 'img/waffleWhite.png']
         game.sprite.Sprite.__init__(self)  # Calling it's super class for proper function.
-        self.image = game.image.load(os.path.join(image_folder, "Platformer_Sprite_1.png"))  # The picture of the
-        # sprite itself. Os.Path to platform image.
-        self.rect = self.image.get_rect()  # The boundry box "hitbox" of the player created. Start at center of screen
+        self._layer = 0
+        self.image = game.image.load(sprites[random.randint(0, 10)])  # The picture of the
+        self.rect = self.image.get_rect()  # The boundary box "hitbox" of the player created. Start at center of screen
         self.rect.center = (window_width / 2, window_height / 2)
         self.position = vector(window_width / 2, window_height / 2)
         self.velocity = vector(0, 0)
@@ -53,4 +60,5 @@ class Player(game.sprite.Sprite):
         touching = game.sprite.spritecollide(self, self.instance.platforms, False)
         self.rect.x -= 1
         if touching:
-            self.velocity.y = -14
+            self.velocity.y = -15
+            hop.play()
