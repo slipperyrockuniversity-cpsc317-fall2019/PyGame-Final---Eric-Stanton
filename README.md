@@ -10,7 +10,7 @@ My project is to use the PyGame framework to make a rudimentary 2d game in the p
 
 The particular syntax of the code.
  
-### Planned (In Progress)
+### Planned (In Progress) as of initial proposal.
 I am attempting to make a game that satisfies the conditions of having:
 
 1. Vivid background elements
@@ -22,25 +22,25 @@ I am attempting to make a game that satisfies the conditions of having:
 
 
 # Update 11/6/2019:
->
-Workable Game Prototype has been integrated to main Branch. New sprites have been added, and a candy theme has been chosen for the game. 
+
+>Workable Game Prototype has been integrated to main Branch. New sprites have been added, and a candy theme has been chosen for the game. 
 ------------
-Physics have been added and with proper platform generation, one issue (platform conjoinment).
+>Physics have been added and with proper platform generation, one issue (platform conjoinment).
 ------------
-Assets Remaining: Music, Background, (Jump, Start, Die) Sound Effects, refinement of game code.
+>Assets Remaining: Music, Background, (Jump, Start, Die) Sound Effects, refinement of game code.
 ------------
-Potential plans: Sideways "dart" enemies with a hit counter, die of certain number counter increments.
+>Potential plans: Sideways "dart" enemies with a hit counter, die of certain number counter increments.
 -------------
-Master Merge - 11/6/2019.
+>Master Merge - 11/6/2019.
 --------------
 >
 # Update 12/7/2019:
->
-Tentative full prototype - Submittable
+
+>Tentative full prototype - Submittable
 ------------------
-One issue of platform conjoinment to fix at a later date hobbyistically
+>One issue of platform conjoinment to fix at a later date hobbyistically
 ------------------
-Fully Playable with added Music, Random Platform/Sprite/"Candy" Rain Images selected for drawing, and backgrounds.
+>Fully Playable with added Music, Random Platform/Sprite/"Candy" Rain Images selected for drawing, and backgrounds.
 ------------------
->
+
 ## To activate after confirming assets in place, Startup Main.py with Pygame accessible terminal.
