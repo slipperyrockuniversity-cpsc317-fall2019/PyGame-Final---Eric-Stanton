@@ -31,5 +31,15 @@ Assets Remaining: Music, Background, (Jump, Start, Die) Sound Effects, refinemen
 ------------
 Potential plans: Sideways "dart" enemies with a hit counter, die of certain number counter increments.
 -------------
-Most recent Master Merge - 11/6/2019.
+Master Merge - 11/6/2019.
 --------------
+
+#Update 12/7/2019:
+Tentative full prototype - Submittable
+------------------
+One issue of platform conjoinment to fix at a later date hobbyistically
+------------------
+Fully Playable with added Music, Random Platform/Sprite/"Candy" Rain Images selected for drawing, and backgrounds.
+------------------
+
+##To activate after confirming assets in place, Startup Main.py with Pygame accessible terminal.
